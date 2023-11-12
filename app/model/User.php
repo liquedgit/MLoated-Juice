@@ -1,52 +1,40 @@
 <?php
 
 
-class User implements JsonSerializable
+class User
 {
-    private $username;
-    private $password;
-    private $id;
-    private $roles;
+    private $db;
 
-    public function __construct($username, $password,
-                                $roles = ["User"])
+    public function __construct()
     {
-        $this->username = $username;
-        $this->password = password_hash($password, PASSWORD_BCRYPT);
-        $this->roles = $roles;
-        $this->id = uniqid();
+        $this->db = new Database();
     }
 
-    public static function AuthenticateUser($username, $password){
+    public function GetAllUser(){
+        return $this->db->GetUsers();
+    }
 
-        $localStorage = LocalStorage::getInstance();
-        foreach ($localStorage->getUsers() as $user){
-            if($user->username === $username && password_verify($password, $user->password)){
-                var_dump("Authenticated");
+    public function GetUserByUsername($username){
+        $users = $this->db->GetUsers();
+        foreach ($users as $user){
+            if($user["username"] == $username){
+                return $user;
             }
         }
-
+        return null;
     }
 
-    public function getUsername(){
-        return $this->username;
+    public function RegisterUser($username, $password, $dob, $gender, $roles = ["User"]){
+        $this->db->AddUsers($username,$password, $dob, $gender,$roles);
     }
 
-    public function getRoles(){
-        return $this->roles;
+    public function authenticate($username, $password){
+        $user = $this->GetUserByUsername($username);
+        if($user && password_verify($password, $user["password"])){
+            return $user;
+        }else{
+            return null;
+        }
     }
 
-    public function setRoles($roles){
-        $this->roles = $roles;
-    }
-
-    public function jsonSerialize()
-    {
-        return [
-            'username'=> $this->username,
-            'password'=>$this->password,
-            'id'=> $this->id,
-            '$roles'=> $this->roles
-        ];
-    }
 }

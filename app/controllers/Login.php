@@ -6,22 +6,35 @@ class Login extends Controller{
     protected $userModel = "User";
 
     public function index(){
+        if(isset($_SESSION["USER"])){
+            header("Location: " .BASEURL."/home");
+        }
+
+        if(!isset($_SESSION['csrf_token'])){
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
         $this->view("Login/index", $this->title);
     }
 
     public function authenticate(){
+        unset($_SESSION["error_message"]);
         if($_SERVER['REQUEST_METHOD'] === "POST"){
-            if($_REQUEST['csrf_token'] === $_SESSION["csrf_token"]){
-             //go to model and validate
+            if($_REQUEST['csrf_token'] === $_SESSION["csrf_token"]) {
+                //go to model and validate
                 $user = $_REQUEST["username"];
                 $password = $_REQUEST["password"];
-                require_once '../app/model/User.php';
-                $currUser = User::AuthenticateUser($user, $password);
-                var_dump($currUser);
+                $authStatus = $this->model('User')->authenticate($user, $password);
+                if ($authStatus) {
+                    $_SESSION["USER"] = $authStatus;
+                    header("Location: ". BASEURL . "/home");
+                    return;
+                }else{
+                    $_SESSION["error_message"] = "Login Failed !";
+                }
             }else{
                 $_SESSION["error_message"] = "CSRF Token is not valid";
-                header("Location: ". BASEURL. "/login");
             }
+            header("Location: ". BASEURL. "/login");
         }
     }
 

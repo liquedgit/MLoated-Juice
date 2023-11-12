@@ -1,4 +1,4 @@
 <?php
 
-const PROJECT_NAME = "PHPH1";
+const PROJECT_NAME = "MLoated-Juice";
 const BASEURL = 'http://localhost/'.PROJECT_NAME.'/public';
