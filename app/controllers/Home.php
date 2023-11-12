@@ -9,9 +9,13 @@ class Home extends Controller {
         }
 
         $currUser = $_SESSION["USER"];
-
+        $activeRole = $_SESSION["USER"]["roles"][0];
+        if(isset($_SESSION["activeRole"])){
+            $activeRole = $_SESSION["activeRole"];
+        }
         $this->view('Home/index', $this->title,[
-            "currUser"=>$currUser
+            "currUser"=>$currUser,
+            "activeRole"=>$activeRole
         ]);
     }
 

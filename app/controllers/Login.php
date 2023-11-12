@@ -26,8 +26,14 @@ class Login extends Controller{
                 $authStatus = $this->model('User')->authenticate($user, $password);
                 if ($authStatus) {
                     $_SESSION["USER"] = $authStatus;
+                    if(isset($_REQUEST["rememberme"])){
+                        setcookie(USER_SESSION, $authStatus["username"], time() + 86400, "/". PROJECT_NAME ."/");
+                    }else{
+                        setcookie(USER_SESSION, $authStatus["username"], time() + 3600, "/".PROJECT_NAME."/");
+                    }
+
                     header("Location: ". BASEURL . "/home");
-                    return;
+//                    return;
                 }else{
                     $_SESSION["error_message"] = "Login Failed !";
                 }

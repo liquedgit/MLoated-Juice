@@ -24,7 +24,6 @@ class Register extends Controller{
                 $password = $_REQUEST["password"];
                 $confirmPassword = $_REQUEST["confirmPassword"];
                 $dob = $_REQUEST["DOB"];
-//                var_dump($this->ValidateAge($dob));
                 $user = $this->model("User")->GetUserByUsername($username);
                 if($username === "" || $password === "" || $confirmPassword === "" || $dob === "" ||
                     !isset($_REQUEST["gender"])){
@@ -37,8 +36,9 @@ class Register extends Controller{
                     $_SESSION["error_message"] = "You must be over 17 years old to create an account";
                 }else{
                     $gender = $_REQUEST["gender"];
-                    var_dump("Registering");
                     $this->model("User")->RegisterUser($username, $password, $dob, $gender);
+                    header("Location: ". BASEURL. "/login");
+                    exit();
                 }
             }else{
                 $_SESSION["error_message"] = "CSRF Token is not Valid";
@@ -66,7 +66,6 @@ class Register extends Controller{
         $userDob = new DateTime($dob);
         $today = new DateTime('today');
         $year = $userDob->diff($today)->y;
-        var_dump($year);
         if($year > 17){
             return true;
         }

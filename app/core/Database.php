@@ -30,7 +30,7 @@ class Database
 
             $this->data['users'][] = $admin_data;
             $this->data["users"][] = $user_data;
-            setcookie("DATA", json_encode($this->data));
+            setcookie("DATA", json_encode($this->data), time() + 86400, "/MLoated-Juice/");
         }
     }
 
@@ -42,15 +42,17 @@ class Database
         $newUser = [
             "username"=>$username,
             "password"=> password_hash($password, PASSWORD_BCRYPT),
+            "dob" => $dob,
+            "gender"=> $gender,
             "roles"=>$roles
         ];
-        $this->data["users"][] =$newUser;
+        $this->data["users"][] = $newUser;
         $this->saveDataToCookie();
     }
 
     private function saveDataToCookie()
     {
-        setcookie("DATA", json_encode($this->data));
+        setcookie("DATA", json_encode($this->data), time() + 86400, "/MLoated-Juice/");
     }
 
 }

@@ -38,6 +38,6 @@ if(isset($_SESSION["error_message"])){
 
             <button class="bg-white bg-opacity-70 h-full mt-2 h-full text-slate-500 p-2 font-medium">Register</button>
         </form>
-        <a href="<?php echo BASEURL . "/register"; ?>" class="text-slate-500 flex justify-center mt-3 font-medium">Already have an account ? Log in here !</a>
+        <a href="<?php echo BASEURL . "/login"; ?>" class="text-slate-500 flex justify-center mt-3 font-medium">Already have an account ? Log in here !</a>
     </div>
 </div>

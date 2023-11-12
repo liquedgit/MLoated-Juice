@@ -1,1 +1,4 @@
-<h1 class="text-5xl">Welcome <?php echo $data["currUser"]["username"];?></h1>
+<?php
+require_once "../app/view/components/header.php";
+require_once "../app/view/components/navbar.php";
+?>
