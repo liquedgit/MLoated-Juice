@@ -27,11 +27,47 @@ class Database
                 "gender"=> "male",
                 "roles"=>["User"]
             ];
+            $product1 = [
+                "id" => uniqid(),
+                "productName"=>"Mango Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."mango-juice.jpg",
+                "productPopularity"=> rand(0,10)
+            ];
+            $product2 = [
+                "id" => uniqid(),
+                "productName"=>"Strawberry Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."strawberry-juice.png",
+                "productPopularity"=> rand(0,10)
+            ];
 
             $this->data['users'][] = $admin_data;
             $this->data["users"][] = $user_data;
+            $this->data["products"][]=$product1;
+            $this->data["products"][]=$product2;
+//            $this->data["products"][]=$product3;
+//            $this->data["products"][]=$product4;
+//            $this->data["products"][]=$product5;
+//            $this->data["products"][]=$product6;
+//            $this->data["products"][]=$product7;
+//            $this->data["products"][]=$product8;
+//            $this->data["products"][]=$product9;
+//            $this->data["products"][]=$product10;
             setcookie("DATA", json_encode($this->data), time() + 86400, "/MLoated-Juice/");
         }
+    }
+
+    public function GetProducts(){
+        return $this->data["products"];
+    }
+
+    public function AddProducts(){
+
     }
 
     public function GetUsers(){

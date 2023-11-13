@@ -17,7 +17,7 @@
             type="text/css"
     />
 </head>
-<body>
+<body class="m-0 p-0">
     <main>
         <?php require_once ('../app/view/'.$view.'.php');?>
     </main>

@@ -13,9 +13,13 @@ class Home extends Controller {
         if(isset($_SESSION["activeRole"])){
             $activeRole = $_SESSION["activeRole"];
         }
+
+        $latestProducts = $this->model("Product")->GetLatestProducts();
+
         $this->view('Home/index', $this->title,[
             "currUser"=>$currUser,
-            "activeRole"=>$activeRole
+            "activeRole"=>$activeRole,
+            "latestProducts"=> $latestProducts
         ]);
     }
 

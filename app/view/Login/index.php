@@ -2,7 +2,6 @@
     if(isset($_SESSION["error_message"])){
         echo '<div class="toast-notification" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
                 <div class="flex items-center bg-red-500 border-l-4 border-red-700 py-2 px-3 shadow-md mb-2" >
-                    <!-- message -->
                     <div class="text-white max-w-xs ">'
                         . $_SESSION["error_message"].
                     '</div>
@@ -22,9 +21,10 @@
             <input class="bg-white bg-opacity-70 backdrop-blur-md w-72 backdrop-saturate-150 placeholder-gray-300 pl-2 py-2 border border-opacity-20 border-gray-300
             focus:outline-none" type="password" name="password" placeholder="Password"/>
             <div class="self-start mt-2 ml-2 flex">
-                <input name="rememberme" id="rememberme" type="checkbox">
-                <label for="rememberme" class="ml-2 text-slate-500 align-text-top h-full" >Remember me</label>
+                <label for="rememberme" class="text-slate-500 align-text-top h-full" >Remember me</label>
+                <input name="rememberme" id="rememberme" type="checkbox" class="ml-2">
             </div>
+
             <button class="bg-white bg-opacity-70 h-full mt-2 h-full text-slate-500 p-2 font-medium">Login</button>
         </form>
         <a href="<?php echo BASEURL . "/register"; ?>" class="text-slate-500 flex justify-center mt-3 font-medium">Don't have an account ? Sign up here !</a>

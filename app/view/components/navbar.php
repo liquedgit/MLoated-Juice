@@ -1,24 +1,50 @@
-<nav class="bg-white shadow">
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div class="relative flex items-center justify-between h-16">
-            <div class="flex-1 flex items-center justify-start">
-                <div class="sm:block sm:ml-6">
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium <?php
+<?php
+    use helper\Gate;
 
-                        ?>">Home</a>
-                        <a href="#" class="text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium">Menu</a>
-                    </div>
+?>
+<div class="navbar px-10 bg-base-100">
+    <div class="flex-1">
+        <a class="btn btn-ghost text-large">Home</a>
+        <a class="btn btn-ghost text-large">Menu</a>
+        <?php
+            if(Gate::activeRoleIsAdmin($data["activeRole"])): ?>
+                <a class="btn btn-ghost text-large">Create Juice</a>
+                <a class="btn btn-ghost text-large">View</a>
+        <?php endif;?>
+    </div>
+    <div class="flex-none">
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle">
+                <div class="indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    <span class="badge badge-sm indicator-item">8</span>
                 </div>
-            </div>
-
-            <div class="flex items-center">
-                <div class="ml-3 relative">
-                    <div class="flex items-center space-x-4">
-                        <a href="<?php echo BASEURL . "/logout"?>" class="text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium">Sign Out</a>
+            </label>
+            <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+                <div class="card-body">
+                    <span class="font-bold text-lg">8 Items</span>
+                    <span class="text-info">Subtotal: $999</span>
+                    <div class="card-actions">
+                        <button class="btn btn-primary btn-block">View cart</button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                    <img alt="Tailwind CSS Navbar component" src="../app/asset/img/logo.png" />
+                </div>
+            </label>
+            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                    <a class="justify-between">
+                        Profile
+                    </a>
+                </li>
+                <li><a>Settings</a></li>
+                <li><a href="<?php echo BASEURL . "/logout"?>">Logout</a></li>
+            </ul>
+        </div>
     </div>
-</nav>
+</div>
