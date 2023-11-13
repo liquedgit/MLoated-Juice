@@ -11,10 +11,16 @@
             src="https://code.jquery.com/jquery-3.7.1.slim.js"
             integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc="
             crossorigin="anonymous"></script>
+    <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@2.6.0/dist/full.css"
+            rel="stylesheet"
+            type="text/css"
+    />
 </head>
 <body>
     <main>
         <?php require_once ('../app/view/'.$view.'.php');?>
     </main>
 </body>
+
 </html>
