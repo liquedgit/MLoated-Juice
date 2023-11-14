@@ -34,7 +34,8 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."mango-juice.jpg",
-                "productPopularity"=> rand(0,10)
+                "productPopularity"=> rand(0,10),
+                "productPrice"=> 30000,
             ];
             $product2 = [
                 "id" => uniqid(),
@@ -43,21 +44,80 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."strawberry-juice.png",
-                "productPopularity"=> rand(0,10)
+                "productPopularity"=> rand(0,10),
+                "productPrice"=> 25000,
+            ];
+            $product3 = [
+                "id" => uniqid(),
+                "productName"=>"Avocado Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."alpukat-juice.png",
+                "productPopularity"=> rand(0,10),
+                "productPrice"=> 27500,
+            ];
+            $product4 = [
+                "id" => uniqid(),
+                "productName"=>"Apple Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."apple-juice.jpg",
+                "productPopularity"=> rand(0,10),
+                "productPrice"=> 20000,
+            ];
+            $product5 = [
+                "id" => uniqid(),
+                "productName"=>"Blueberry Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."blueberry-juice.jpg",
+                "productPopularity"=> rand(0,10),
+                "productPrice"=> 35000,
+            ];
+            $product6 = [
+                "id" => uniqid(),
+                "productName"=>"Kiwi Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."kiwi-juice.jpeg",
+                "productPopularity"=> rand(0,10),
+                "productPrice"=> 28000,
+            ];
+            $product7 = [
+                "id" => uniqid(),
+                "productName"=>"Dragon fruit Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."naga-juice.jpg",
+                "productPopularity"=> rand(0,10),
+                "productPrice"=> 27500,
+            ];
+            $product8 = [
+                "id" => uniqid(),
+                "productName"=>"Watermelon Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."watermelon-juice.jpg",
+                "productPopularity"=> rand(0,10),
+                "productPrice"=> 22500,
             ];
 
             $this->data['users'][] = $admin_data;
             $this->data["users"][] = $user_data;
             $this->data["products"][]=$product1;
             $this->data["products"][]=$product2;
-//            $this->data["products"][]=$product3;
-//            $this->data["products"][]=$product4;
-//            $this->data["products"][]=$product5;
-//            $this->data["products"][]=$product6;
-//            $this->data["products"][]=$product7;
-//            $this->data["products"][]=$product8;
-//            $this->data["products"][]=$product9;
-//            $this->data["products"][]=$product10;
+            $this->data["products"][]=$product3;
+            $this->data["products"][]=$product4;
+            $this->data["products"][]=$product5;
+            $this->data["products"][]=$product6;
+            $this->data["products"][]=$product7;
+            $this->data["products"][]=$product8;
             setcookie("DATA", json_encode($this->data), time() + 86400, "/MLoated-Juice/");
         }
     }

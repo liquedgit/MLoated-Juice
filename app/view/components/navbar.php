@@ -2,10 +2,14 @@
     use helper\Gate;
 
 ?>
-<div class="navbar px-10 bg-base-100">
+<div class="navbar sticky top-0 z-50 px-10 bg-base-100">
     <div class="flex-1">
-        <a class="btn btn-ghost text-large">Home</a>
-        <a class="btn btn-ghost text-large">Menu</a>
+        <a class="btn btn-ghost text-large" href="<?php
+            echo BASEURL . "/home"
+        ?>">Home</a>
+        <a class="btn btn-ghost text-large" href="<?php
+            echo BASEURL . "/menu"
+        ?>">Menu</a>
         <?php
             if(Gate::activeRoleIsAdmin($data["activeRole"])): ?>
                 <a class="btn btn-ghost text-large">Create Juice</a>

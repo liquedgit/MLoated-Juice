@@ -8,8 +8,8 @@
     <title><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script
-            src="https://code.jquery.com/jquery-3.7.1.slim.js"
-            integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc="
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
     <link
             href="https://cdn.jsdelivr.net/npm/daisyui@2.6.0/dist/full.css"

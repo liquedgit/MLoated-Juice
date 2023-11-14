@@ -4,43 +4,23 @@ use helper\Gate;
 
 require_once "../app/view/components/header.php";
 require_once "../app/view/components/navbar.php";
-$latestProduct = end($data["latestProducts"]);
 ?>
 
+<h1 class="text-center text-4xl font-semibold">Our Menu</h1>
+<div class="flex justify-center w-full">
 
-
-<div class="hero min-h-screen bg-base-200">
-    <div class="hero-content flex-col lg:flex-row-reverse">
-        <img
-                alt="<?php echo htmlspecialchars($latestProduct["productName"])?>"
-                src="<?php echo htmlspecialchars($latestProduct["imagePath"]);?>" class="object-contain max-w-sm rounded-lg shadow-2xl" />
-        <div>
-            <h1 class="text-5xl font-bold"><?php echo htmlspecialchars($latestProduct["productName"]). " 
-            is now Available !"?></h1>
-            <p class="py-6">
-                <?php
-                    echo htmlspecialchars($latestProduct["productDescription"])
-                ?>
-            </p>
-            <button class="btn btn-info">Order Juice</button>
-        </div>
-    </div>
-</div>
-
-<h1 class="text-center font-semibold text-4xl mt-14">Latest Product</h1>
-<div class="flex justify-center">
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 py-10 gap-10">
-        <?php foreach (array_reverse($data["latestProducts"]) as $product): ?>
+        <?php foreach ($data["products"] as $product): ?>
             <div class="card card-compact w-96 bg-base-100 shadow-xl">
                 <figure class="h-64 w-full overflow-hidden"><img class="w-full h-full object-cover" src="<?php echo htmlspecialchars($product['imagePath'])?>"
-                             alt="<?php echo htmlspecialchars($product['productName'])?>" /></figure>
+                                                                 alt="<?php echo htmlspecialchars($product['productName'])?>" /></figure>
                 <div class="card-body">
                     <h2 class="card-title"><?php echo htmlspecialchars($product['productName'])?></h2>
                     <p><?php echo htmlspecialchars($product['productDescription'])?></p>
                     <div class="flex justify-end">
                         <?php
-                            if(Gate::activeRoleIsAdmin($data["activeRole"])):
-                        ?>
+                        if(Gate::activeRoleIsAdmin($data["activeRole"])):
+                            ?>
                             <div class="card-actions mr-3">
                                 <button class="btn btn-warning">Edit Juice</button>
                             </div>
@@ -52,4 +32,25 @@ $latestProduct = end($data["latestProducts"]);
                 </div>
             </div>
         <?php endforeach;?>
-</div>
+    </div>
+
+    <script>
+        let isLoading = false
+        $(window).scroll(()=>{
+
+            if($(window).scrollTop() + $(window).height() >= $(document).height()){
+                // console.log("Bottom");
+                isLoading = true;
+                $.ajax({
+                    url: '<?php echo BASEURL . "/menu/product"?>',
+                    method: "GET",
+                    success: (response)=>{
+                        $(".grid").append(response);
+                        isLoading = false;
+                    },
+
+                })
+
+            }
+        })
+    </script>
