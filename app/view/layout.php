@@ -11,11 +11,16 @@
             src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
-    <link
+    <?php
+        if($title !== "404 Not found"){
+            echo '
+            <link
             href="https://cdn.jsdelivr.net/npm/daisyui@2.6.0/dist/full.css"
             rel="stylesheet"
             type="text/css"
-    />
+                />';
+        }
+    ?>
 </head>
 <body class="m-0 p-0">
     <main>

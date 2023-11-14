@@ -1,6 +1,6 @@
 <?php
 
-use helper\Gate;
+use Facade\Gate;
 
 if(!isset($_COOKIE[USER_SESSION])){
         session_destroy();

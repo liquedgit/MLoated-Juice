@@ -1,6 +1,6 @@
 <?php
 
-use helper\Gate;
+use Facade\Gate;
 class Menu extends Controller
 {
     protected $title = "Menu";

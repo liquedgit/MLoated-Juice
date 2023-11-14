@@ -1,5 +1,5 @@
 <?php
-    use helper\Gate;
+    use Facade\Gate;
 
 ?>
 <div class="navbar sticky top-0 z-50 px-10 bg-base-100">
@@ -12,8 +12,10 @@
         ?>">Menu</a>
         <?php
             if(Gate::activeRoleIsAdmin($data["activeRole"])): ?>
-                <a class="btn btn-ghost text-large">Create Juice</a>
-                <a class="btn btn-ghost text-large">View</a>
+                <a class="btn btn-ghost text-large" href="<?php
+                    echo htmlspecialchars(BASEURL. "/juice/create");
+                ?>">Create Juice</a>
+                <a class="btn btn-ghost text-large" href>View</a>
         <?php endif;?>
     </div>
     <div class="flex-none">
@@ -37,7 +39,7 @@
         <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
-                    <img alt="Tailwind CSS Navbar component" src="../app/asset/img/logo.png" />
+                    <img alt="Tailwind CSS Navbar component" src="<?php echo $data["currUser"]["profileImagePath"]; ?>" />
                 </div>
             </label>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

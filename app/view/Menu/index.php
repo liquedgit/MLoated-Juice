@@ -1,12 +1,12 @@
 <?php
 
-use helper\Gate;
+use Facade\Gate;
 
 require_once "../app/view/components/header.php";
 require_once "../app/view/components/navbar.php";
 ?>
 
-<h1 class="text-center text-4xl font-semibold">Our Menu</h1>
+<h1 class="text-center font-semibold text-4xl">Our Menu</h1>
 <div class="flex justify-center w-full">
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 py-10 gap-10">

@@ -18,14 +18,16 @@ class Database
                 "password"=> password_hash("admin" , PASSWORD_BCRYPT),
                 "dob" => "2003-10-10",
                 "gender"=> "male",
-                "roles"=> ["User", "Admin"]
+                "roles"=> ["User", "Admin"],
+                "profileImagePath"=> ASSET_PATH_APP . "img/logo.png"
             ];
             $user_data = [
                 "username" => "liqued",
                 "password"=> password_hash("testing123", PASSWORD_BCRYPT),
                 "dob" => "2003-10-10",
                 "gender"=> "male",
-                "roles"=>["User"]
+                "roles"=>["User"],
+                "profileImagePath"=> ASSET_PATH_APP . "img/logo.png"
             ];
             $product1 = [
                 "id" => uniqid(),
@@ -33,8 +35,8 @@ class Database
                 "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
-                "imagePath" => ASSET_PATH_APP ."mango-juice.jpg",
-                "productPopularity"=> rand(0,10),
+                "imagePath" => ASSET_PATH_APP ."img/mango-juice.jpg",
+                "productPopularity"=> rand(0,5),
                 "productPrice"=> 30000,
             ];
             $product2 = [
@@ -43,8 +45,8 @@ class Database
                 "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
-                "imagePath" => ASSET_PATH_APP ."strawberry-juice.png",
-                "productPopularity"=> rand(0,10),
+                "imagePath" => ASSET_PATH_APP ."img/strawberry-juice.png",
+                "productPopularity"=> rand(0,5),
                 "productPrice"=> 25000,
             ];
             $product3 = [
@@ -53,8 +55,8 @@ class Database
                 "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
-                "imagePath" => ASSET_PATH_APP ."alpukat-juice.png",
-                "productPopularity"=> rand(0,10),
+                "imagePath" => ASSET_PATH_APP ."img/alpukat-juice.png",
+                "productPopularity"=> rand(0,5),
                 "productPrice"=> 27500,
             ];
             $product4 = [
@@ -63,8 +65,8 @@ class Database
                 "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
-                "imagePath" => ASSET_PATH_APP ."apple-juice.jpg",
-                "productPopularity"=> rand(0,10),
+                "imagePath" => ASSET_PATH_APP ."img/apple-juice.jpg",
+                "productPopularity"=> rand(0,5),
                 "productPrice"=> 20000,
             ];
             $product5 = [
@@ -73,8 +75,8 @@ class Database
                 "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
-                "imagePath" => ASSET_PATH_APP ."blueberry-juice.jpg",
-                "productPopularity"=> rand(0,10),
+                "imagePath" => ASSET_PATH_APP ."img/blueberry-juice.jpg",
+                "productPopularity"=> rand(0,5),
                 "productPrice"=> 35000,
             ];
             $product6 = [
@@ -83,8 +85,8 @@ class Database
                 "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
-                "imagePath" => ASSET_PATH_APP ."kiwi-juice.jpeg",
-                "productPopularity"=> rand(0,10),
+                "imagePath" => ASSET_PATH_APP ."img/kiwi-juice.jpeg",
+                "productPopularity"=> rand(0,5),
                 "productPrice"=> 28000,
             ];
             $product7 = [
@@ -93,8 +95,8 @@ class Database
                 "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
-                "imagePath" => ASSET_PATH_APP ."naga-juice.jpg",
-                "productPopularity"=> rand(0,10),
+                "imagePath" => ASSET_PATH_APP ."img/naga-juice.jpg",
+                "productPopularity"=> rand(0,5),
                 "productPrice"=> 27500,
             ];
             $product8 = [
@@ -103,8 +105,8 @@ class Database
                 "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut tortor vel ligula vehicula pretium in aliquam lacus. Fusce dolor diam, tristique ut massa ut, ultricies cursus augue. Donec ultricies, neque non pulvinar convallis.",
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
-                "imagePath" => ASSET_PATH_APP ."watermelon-juice.jpg",
-                "productPopularity"=> rand(0,10),
+                "imagePath" => ASSET_PATH_APP ."img/watermelon-juice.jpg",
+                "productPopularity"=> rand(0,5),
                 "productPrice"=> 22500,
             ];
 
