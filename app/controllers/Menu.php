@@ -9,14 +9,14 @@ class Menu extends Controller
             header("Location: " .BASEURL."/login");
         }
 
-        $_SESSION["lastProduct"] = 3;
+        $_SESSION["lastProduct"] = 6;
 
         $currUser = $_SESSION["USER"];
         $activeRole = $_SESSION["USER"]["roles"][0];
         if(isset($_SESSION["activeRole"])) {
             $activeRole = $_SESSION["activeRole"];
         }
-        $products = $this->model("Product")->GetProductsPaginated(3, 0);
+        $products = $this->model("Product")->GetProductsPaginated(6, 0);
         $this->view('Menu/index', $this->title,[
             "currUser"=>$currUser,
             "activeRole"=>$activeRole,
@@ -32,7 +32,7 @@ class Menu extends Controller
             $activeRole = $_SESSION["activeRole"];
         }
 
-        $products = $this->model("Product")->GetProductsPaginated(3, $lastProduct);
+        $products = $this->model("Product")->GetProductsPaginated(6, $lastProduct);
         foreach ($products as $product){
             echo '
                  <div class="card card-compact w-96 bg-base-100 shadow-xl">
