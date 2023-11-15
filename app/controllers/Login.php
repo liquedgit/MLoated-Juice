@@ -20,7 +20,6 @@ class Login extends Controller{
         unset($_SESSION["error_message"]);
         if($_SERVER['REQUEST_METHOD'] === "POST"){
             if($_REQUEST['csrf_token'] === $_SESSION["csrf_token"]) {
-                //go to model and validate
                 $user = $_REQUEST["username"];
                 $password = $_REQUEST["password"];
                 $authStatus = $this->model('User')->authenticate($user, $password);

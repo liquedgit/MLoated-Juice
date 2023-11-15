@@ -28,4 +28,8 @@ class Product
         return array_slice($products,-5, 5, true);
     }
 
+    public function AddNewProduct($juiceName, $juiceDesc, $juicePrice, $pathFile){
+        $this->db->AddProducts($juiceName, $juicePrice, $juiceDesc, $pathFile);
+    }
+
 }
