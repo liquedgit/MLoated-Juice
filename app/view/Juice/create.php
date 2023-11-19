@@ -65,11 +65,10 @@ require_once "../app/view/components/navbar.php";
                 </div>
 
                 <div class="form-control mb-6">
-                    <label class="label font-bold">
+                    <label for="fileUpload" class="label font-bold">
                         <span class="label-text">Juice description</span>
                     </label>
-                    <textarea name="juiceDescription"
-
+                    <textarea id="fileUpload" name="juiceDescription"
                               class="textarea textarea-bordered h-24" placeholder="Juice Description">
                         <?php if(isset($_SESSION["juiceDescription"]))echo htmlspecialchars($_SESSION["juiceDescription"]);?>
                     </textarea>

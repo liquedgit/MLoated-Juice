@@ -73,46 +73,46 @@ class Database
                 "productPopularity"=> rand(0,5),
                 "productPrice"=> 20000,
             ];
-//            $product5 = [
-//                "id" => uniqid(),
-//                "productName"=>"Blueberry Juice",
-//                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-//                "createdAt"=>time(),
-//                "updatedAt"=>time(),
-//                "imagePath" => ASSET_PATH_APP ."img/blueberry-juice.jpg",
-//                "productPopularity"=> rand(0,5),
-//                "productPrice"=> 35000,
-//            ];
-//            $product6 = [
-//                "id" => uniqid(),
-//                "productName"=>"Kiwi Juice",
-//                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-//                "createdAt"=>time(),
-//                "updatedAt"=>time(),
-//                "imagePath" => ASSET_PATH_APP ."img/kiwi-juice.jpeg",
-//                "productPopularity"=> rand(0,5),
-//                "productPrice"=> 28000,
-//            ];
-//            $product7 = [
-//                "id" => uniqid(),
-//                "productName"=>"Dragon fruit Juice",
-//                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-//                "createdAt"=>time(),
-//                "updatedAt"=>time(),
-//                "imagePath" => ASSET_PATH_APP ."img/naga-juice.jpg",
-//                "productPopularity"=> rand(0,5),
-//                "productPrice"=> 27500,
-//            ];
-//            $product8 = [
-//                "id" => uniqid(),
-//                "productName"=>"Watermelon Juice",
-//                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-//                "createdAt"=>time(),
-//                "updatedAt"=>time(),
-//                "imagePath" => ASSET_PATH_APP ."img/watermelon-juice.jpg",
-//                "productPopularity"=> rand(0,5),
-//                "productPrice"=> 22500,
-//            ];
+            $product5 = [
+                "id" => uniqid(),
+                "productName"=>"Blueberry Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."img/blueberry-juice.jpg",
+                "productPopularity"=> rand(0,5),
+                "productPrice"=> 35000,
+            ];
+            $product6 = [
+                "id" => uniqid(),
+                "productName"=>"Kiwi Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."img/kiwi-juice.jpeg",
+                "productPopularity"=> rand(0,5),
+                "productPrice"=> 28000,
+            ];
+            $product7 = [
+                "id" => uniqid(),
+                "productName"=>"Dragon fruit Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."img/naga-juice.jpg",
+                "productPopularity"=> rand(0,5),
+                "productPrice"=> 27500,
+            ];
+            $product8 = [
+                "id" => uniqid(),
+                "productName"=>"Watermelon Juice",
+                "productDescription"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet odio a varius pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+                "createdAt"=>time(),
+                "updatedAt"=>time(),
+                "imagePath" => ASSET_PATH_APP ."img/watermelon-juice.jpg",
+                "productPopularity"=> rand(0,5),
+                "productPrice"=> 22500,
+            ];
 
             $this->users[] = $admin_data;
             $this->users[] = $user_data;
@@ -120,10 +120,10 @@ class Database
             $this->products[]=$product2;
             $this->products[]=$product3;
             $this->products[]=$product4;
-//            $this->products[]=$product5;
-//            $this->products[]=$product6;
-//            $this->products[]=$product7;
-//            $this->products[]=$product8;
+            $this->products[]=$product5;
+            $this->products[]=$product6;
+            $this->products[]=$product7;
+            $this->products[]=$product8;
             setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/". PROJECT_NAME ."/");
             setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/". PROJECT_NAME ."/");
         }

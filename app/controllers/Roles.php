@@ -7,8 +7,7 @@ class Roles{
         }
 
         $_SESSION["activeRole"] = $_REQUEST["option"];
-        $lastSlashPos = strrpos($_SERVER["HTTP_REFERER"], '/');
-        $trimmedPath = substr($_SERVER["HTTP_REFERER"], $lastSlashPos);
-        header("Location: " . BASEURL . $trimmedPath);
+
+        header("Location: " . $_SERVER["HTTP_REFERER"]);
     }
 }

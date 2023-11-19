@@ -23,6 +23,28 @@ class Product
         }
     }
 
+    public function GetProductByName($productName): array
+    {
+        $products = $this->db->GetProducts();
+        $arrNames = [];
+        foreach ($products as $product){
+            if(stripos($product["productName"], $productName) !== false){
+                $arrNames[] = $product;
+            }
+        }
+        return $arrNames;
+    }
+
+    public function GetProductById($productId){
+        $products = $this->db->GetProducts();
+        foreach ($products as $product){
+            if($productId === $product["id"]){
+                return $product;
+            }
+        }
+        return null;
+    }
+
     public function GetLatestProducts(){
         $products = $this->db->GetProducts();
         return array_slice($products,-5, 5, true);

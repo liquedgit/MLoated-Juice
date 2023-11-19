@@ -87,4 +87,28 @@ class Juice extends Controller
             header("Location: ". BASEURL ."/home");
         }
     }
+
+    public function details($id){
+        if($_SERVER["REQUEST_METHOD"] === "GET"){
+            if(!isset($_SESSION["USER"])){
+                header("Location: " .BASEURL."/login");
+            }
+
+            $currUser = $_SESSION["USER"];
+            $activeRole = $_SESSION["USER"]["roles"][0];
+            if(isset($_SESSION["activeRole"])){
+                $activeRole = $_SESSION["activeRole"];
+            }
+
+            $product = $this->model("Product")->GetProductById($id);
+
+            $this->view("Juice/index", "Juice Detail", [
+                "currUser"=>$currUser,
+                "activeRole"=> $activeRole,
+                "product"=>$product
+            ]);
+        }else if($_SERVER["REQUEST_METHOD"] === "POST"){
+            var_dump($_REQUEST);
+        }
+    }
 }

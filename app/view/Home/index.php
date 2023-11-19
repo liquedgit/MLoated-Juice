@@ -22,7 +22,17 @@ $latestProduct = end($data["latestProducts"]);
                     echo htmlspecialchars($latestProduct["productDescription"])
                 ?>
             </p>
-            <button class="btn btn-info">Order Juice</button>
+            <?php
+                if(Gate::activeRoleIsAdmin($data["activeRole"])):
+            ?>
+                    <button
+                            onclick="window.location.href='<?php echo BASEURL . "/juice/details/".$latestProduct["id"]?>'"
+                            class="btn btn-warning">Edit Juice</button>
+                <?php else:?>
+                    <button
+                            onclick="window.location.href='<?php echo BASEURL . "/juice/details/".$latestProduct["id"]?>'"
+                            class="btn btn-info">Order Juice</button>
+                <?php endif?>
         </div>
     </div>
 </div>
@@ -42,12 +52,18 @@ $latestProduct = end($data["latestProducts"]);
                             if(Gate::activeRoleIsAdmin($data["activeRole"])):
                         ?>
                             <div class="card-actions mr-3">
-                                <button class="btn btn-warning">Edit Juice</button>
+                                <button
+                                        onclick="window.location.href='<?php echo BASEURL . "/juice/details/".$product["id"]?>'"
+                                        class="btn btn-warning">Edit Juice</button>
                             </div>
+                            <?php else:?>
+                                <div class="card-actions">
+                                    <button
+                                            onclick="window.location.href='<?php echo BASEURL . "/juice/details/".$product["id"]?>'"
+                                            class="btn btn-info">Order Juice</button>
+                                </div>
                         <?php endif;?>
-                        <div class="card-actions">
-                            <button class="btn btn-info">Order Juice</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
