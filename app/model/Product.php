@@ -35,6 +35,8 @@ class Product
         return $arrNames;
     }
 
+
+
     public function GetProductById($productId){
         $products = $this->db->GetProducts();
         foreach ($products as $product){
@@ -43,6 +45,10 @@ class Product
             }
         }
         return null;
+    }
+
+    public function UpdateProductById($productId, $newName, $newDesc, $newPrice, $newRating){
+        $this->db->UpdateProductById($productId, $newName, $newDesc,$newPrice, $newRating);
     }
 
     public function GetLatestProducts(){

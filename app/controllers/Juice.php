@@ -52,8 +52,10 @@ class Juice extends Controller
             }else if(strlen($juiceName) < 5 || strlen($juiceName) > 20){
                 $_SESSION["juice_name_error_message"] = "Juice name cannot be less than 5 or more than 20 character";
             }
-
-            if($juicePrice <= 0 || $juicePrice >= 50000){
+            if(!is_numeric($juicePrice)){
+                $_SESSION["juice_price_error_message"] = "Juice price must be numeric !";
+            }
+            else if($juicePrice <= 0 || $juicePrice >= 50000){
                 $_SESSION["juice_price_error_message"] = "Juice price cannot be less than or equals to 0 and more than or equals to 50000";
             }
 
@@ -108,7 +110,51 @@ class Juice extends Controller
                 "product"=>$product
             ]);
         }else if($_SERVER["REQUEST_METHOD"] === "POST"){
-            var_dump($_REQUEST);
+//            var_dump($_REQUEST);
+//            var_dump($id);
+            unset($_SESSION["error_message"]);
+            unset($_SESSION["success_message"]);
+            $newName = $_REQUEST["productName"];
+            $newDesc = $_REQUEST["productDesc"];
+            $newPrice = $_REQUEST["productPrice"];
+            $newRating = $_REQUEST["productRating"];
+            if($newName === "" || $newDesc === "" || $newPrice === "" || $newRating === ""){
+                $_SESSION["error_message"] = "All fields must be filled";
+                $this->redirectBack();
+                return;
+            }else if(!is_numeric($newPrice)){
+                $_SESSION["error_message"] = "Price must be numeric";
+                $this->redirectBack();
+                return;
+            }else if((int)$newPrice <= 0 || (int)$newPrice >= 50000){
+                $_SESSION["juice_price_error_message"] = "Juice price cannot be less than or equals to 0 and more than or equals to 50000";
+                $this->redirectBack();
+                return;
+            }else if(strlen($newName) < 5 || strlen($newName) > 20){
+                $_SESSION["error_message"] = "Juice name cannot be less than 5 or more than 20 character";
+                $this->redirectBack();
+                return;
+            }else if(strlen($newDesc) < 10 || strlen($newDesc) > 100){
+
+                $_SESSION["error_message"] = "Juice description length cannot be less than 10 or more than 100 character";
+                $this->redirectBack();
+                return;
+            }else if(!is_numeric($newRating)){
+                $_SESSION["error_message"] = "Rating must be numeric !";
+                $this->redirectBack();
+                return;
+            }else if($newRating < 0 || $newRating > 5){
+                $_SESSION["error_message"] = "Rating must be greater or equals to 0 and Less or equals to 5";
+                $this->redirectBack();
+                return;
+            }
+            $this->model("Product")->updateProductById($id, $newName, $newDesc, $newPrice, $newRating);
+            $_SESSION["success_message"] = "Succesfully updated juice";
+            $this->redirectBack();
         }
+    }
+
+    function redirectBack(){
+        header("Location:". $_SERVER["HTTP_REFERER"]);
     }
 }

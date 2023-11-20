@@ -23,7 +23,7 @@
     ?>
 </head>
 <body class="m-0 p-0">
-    <main>
+    <main class="min-h-screen" style="background-color: #242933">
         <?php require_once ('../app/view/'.$view.'.php');?>
     </main>
 </body>

@@ -6,16 +6,19 @@ class Database
 
     private $data = [
         'users' => [],
-        'products' => []
+        'products' => [],
+        'transactions'=>[]
     ];
 
     private $users = [];
     private $products = [];
+    private $transactions = [];
     public function __construct()
     {
-        if (isset($_COOKIE["USER"]) && isset($_COOKIE["PRODUCTS"])) {
+        if (isset($_COOKIE["USER"]) && isset($_COOKIE["PRODUCTS"]) && isset($_COOKIE["TRANSACTIONS"])) {
             $this->users = json_decode(gzuncompress($_COOKIE["USER"]), true);
             $this->products = json_decode(gzuncompress($_COOKIE["PRODUCTS"]), true);
+            $this->transactions = json_decode(gzuncompress($_COOKIE["TRANSACTIONS"]), true);
         } else {
             $admin_data = [
                 "username"=>"admin",
@@ -126,7 +129,24 @@ class Database
             $this->products[]=$product8;
             setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/". PROJECT_NAME ."/");
             setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/". PROJECT_NAME ."/");
+            setcookie("TRANSACTIONS", gzcompress(json_encode($this->transactions), 9), time() + 86400, "/". PROJECT_NAME ."/");
         }
+    }
+
+    public function GetTransactions(){
+        return $this->transactions;
+    }
+
+    public function AddTransactions($buyerUsername, $productId, $qty){
+        $newTransactions = [
+            "id" =>uniqid(),
+            "buyer"=> $buyerUsername,
+            "createdAt" => time(),
+            "product"=> $productId,
+            "quantity"=> $qty
+        ];
+        $this->transactions[] = $newTransactions;
+        setcookie("TRANSACTIONS", gzcompress(json_encode($this->transactions), 9), time() + 86400, "/". PROJECT_NAME ."/");
     }
 
     public function GetProducts(){
@@ -147,6 +167,21 @@ class Database
         $this->products[] = $newProduct;
         setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/". PROJECT_NAME ."/");
 
+    }
+
+    public function UpdateProductById($productId, $newName, $newDesc,$newPrice, $newRating){
+        foreach ($this->products as &$product){
+            if($productId === $product["id"]){
+                $product["productName"] = $newName;
+                $product["productDescription"] = $newDesc;
+                $product["productPrice"] = $newPrice;
+                $product["productPopularity"] = $newRating;
+                $product["updatedAt"] = time();
+                break;
+            }
+        }
+        var_dump(json_encode($this->products));
+        setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/". PROJECT_NAME ."/");
     }
 
     public function GetUsers(){

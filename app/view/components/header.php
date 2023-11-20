@@ -7,7 +7,7 @@ if(!isset($_COOKIE[USER_SESSION])){
         header("Location:" .BASEURL. "/login");
     }
 ?>
-<div class="w-full px-10 flex items-center justify-between">
+<div class="w-full px-10 flex items-center justify-between" style="background-color: #2a303c">
     <div class="h-32 overflow-hidden flex items-center">
 <!--        <img class="max-h-full max-w-full object-contain" src="../app/asset/img/logo.png">-->
         <h2 class="font-semibold text-2xl">MLoated Juice</h2>
