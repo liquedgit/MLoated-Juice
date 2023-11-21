@@ -30,6 +30,18 @@ class TransactionModel
         return $userTransactions;
     }
 
+    public function filterUserTransactions($query){
+        $transactions = $this->GetAllTransactions();
+        $userTransactions = [];
+        foreach ($transactions as $transaction){
+            if(stripos($transaction["buyer"], $query) !== false){
+                $userTransactions[] = $transaction;
+            }
+        }
+        return $userTransactions;
+    }
+
+
     public function AddTransaction($username, $quantity, $productID){
         $this->db->AddTransactions($username, $productID, $quantity);
     }

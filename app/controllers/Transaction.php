@@ -16,9 +16,14 @@ class Transaction extends Controller
         $title = "My Transactions";
         $transactions = $this->model("TransactionModel")->GetUserTransactions($currUser["username"]);
         if(Gate::activeRoleIsAdmin($activeRole)){
-            $transactions = $this->model("TransactionModel")->GetAllTransactions();
+            if(isset($_GET["search"])){
+                $transactions = $this->model("TransactionModel")->filterUserTransactions($_GET["search"]);
+            }else{
+                $transactions = $this->model("TransactionModel")->GetAllTransactions();
+            }
             $title = "All Transactions";
         }
+
 
         $this->view("Transaction/index", $title, [
             "currUser"=>$currUser,

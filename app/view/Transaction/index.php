@@ -4,7 +4,6 @@ use Facade\Gate;
 
 require_once "../app/view/components/header.php";
 require_once "../app/view/components/navbar.php";
-//var_dump($data["transactions"]);
 ?>
 
 <h1 class="text-center text-4xl font-semibold p-10">
@@ -19,7 +18,7 @@ require_once "../app/view/components/navbar.php";
 
 <?php if(Gate::activeRoleIsAdmin($data["activeRole"])):?>
     <div class="flex justify-center w-100 py-5" >
-        <form class="w-2/5" method="get" action="<?php echo BASEURL . "/menu"?>">
+        <form class="w-2/5" method="get" action="<?php echo BASEURL . "/transaction"?>">
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -41,40 +40,43 @@ require_once "../app/view/components/navbar.php";
 <?php endif;?>
 
 <div class="flex w-full h-full justify-center">
-
-    <div class="overflow-x-auto">
-        <table class="table rounded-lg" style="background-color: #2a303c">
-            <thead class="rounded-lg" style="background-color: #2a303c">
-            <tr style="background-color: #2a303c">
-                <th class="text-center" style="background-color: #2a303c">Buyer</th>
-                <th class="text-center" style="background-color: #2a303c">Product Name</th>
-                <th class="text-center" style="background-color: #2a303c">Quantity</th>
-                <th class="text-center" style="background-color: #2a303c">Total</th>
-                <th class="text-center" style="background-color: #2a303c">Created At</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($data["transactions"] as $transaction):?>
-                <tr>
-                    <td class="text-center">
-                        <?php
-                        echo htmlspecialchars($transaction["buyer"])?>
-                    </td>
-                    <td class="text-center">
-                        <?php echo htmlspecialchars($transaction["product"]["productName"]) ?>
-                    </td class="text-center">
-                    <td class="text-center"><?php echo htmlspecialchars($transaction["quantity"])?></td>
-                    <td class="text-center">
-                        <?php echo "Rp. ".htmlspecialchars((int)$transaction["quantity"] * (int)$transaction["product"]["productPrice"])?>
-                    </td>
-                    <td class="text-center">
-                        <?php echo htmlspecialchars(gmdate('r', $transaction["createdAt"]))?>
-                    </td>
+    <?php if(isset($data["transactions"]) && count($data["transactions"]) > 0):?>
+        <div class="overflow-x-auto">
+            <table class="table rounded-lg" style="background-color: #2a303c">
+                <thead class="rounded-lg" style="background-color: #2a303c">
+                <tr style="background-color: #2a303c">
+                    <th class="text-center" style="background-color: #2a303c">Buyer</th>
+                    <th class="text-center" style="background-color: #2a303c">Product Name</th>
+                    <th class="text-center" style="background-color: #2a303c">Quantity</th>
+                    <th class="text-center" style="background-color: #2a303c">Total</th>
+                    <th class="text-center" style="background-color: #2a303c">Created At</th>
                 </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($data["transactions"] as $transaction):?>
+                    <tr>
+                        <td class="text-center">
+                            <?php
+                            echo htmlspecialchars($transaction["buyer"])?>
+                        </td>
+                        <td class="text-center">
+                            <?php echo htmlspecialchars($transaction["product"]["productName"]) ?>
+                        </td class="text-center">
+                        <td class="text-center"><?php echo htmlspecialchars($transaction["quantity"])?></td>
+                        <td class="text-center">
+                            <?php echo "Rp. ".htmlspecialchars((int)$transaction["quantity"] * (int)$transaction["product"]["productPrice"])?>
+                        </td>
+                        <td class="text-center">
+                            <?php echo htmlspecialchars(gmdate('r', $transaction["createdAt"]))?>
+                        </td>
+                    </tr>
 
-            <?php endforeach;?>
+                <?php endforeach;?>
 
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+    <?php else:?>
+        <h1 class="text-xl font-semibold">There is no transactions yet</h1>
+    <?php endif;?>
 </div>

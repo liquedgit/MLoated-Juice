@@ -15,7 +15,6 @@
                 <a class="btn btn-ghost text-large" href="<?php
                     echo htmlspecialchars(BASEURL. "/juice/create");
                 ?>">Create Juice</a>
-                <a class="btn btn-ghost text-large" href>View</a>
         <?php endif;?>
     </div>
     <div class="flex-none">
