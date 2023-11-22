@@ -1,5 +1,7 @@
 Options -Multiviews
 
+Header always set X-Frame-Options “SAMEORIGIN”
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

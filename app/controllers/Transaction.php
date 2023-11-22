@@ -1,12 +1,12 @@
 <?php
 use Facade\Gate;
+use Facade\Middleware;
+use Facade\Preventor;
 class Transaction extends Controller
 {
 
     public function index(){
-        if(!isset($_SESSION["USER"])){
-            header("Location: " .BASEURL."/login");
-        }
+        Middleware::authenticatedOnly();
 
         $currUser = $_SESSION["USER"];
         $activeRole = $_SESSION["USER"]["roles"][0];
@@ -33,31 +33,27 @@ class Transaction extends Controller
     }
 
     public function create($id){
-        if(!isset($_SESSION["USER"])){
-            header("Location: " .BASEURL."/login");
+        Middleware::authenticatedOnly();
+        if(Preventor::CSRFCheck($_REQUEST["csrf_token"])){
+            unset($_SESSION["error_message"]);
+            $qty = $_REQUEST["quantity"];
+            if($qty === ""){
+                $_SESSION["error_message"] = "Quantity cannot be empty";
+                return;
+            }
+            elseif(!is_numeric($qty)){
+                $_SESSION["error_message"] = "Quantity must be a numeric";
+                return;
+            }
+
+            $user = $_SESSION["USER"];
+
+            $this->model("TransactionModel")->AddTransaction($user["username"], (int)$qty, $id);
+            $_SESSION["success_message"] = "Succesfully added transaction";
+        }else{
+            $_SESSION["error_message"] = "CSRF Token error";
+            header("Location:". $_SERVER["HTTP_REFERER"]);
         }
-
-        unset($_SESSION["error_message"]);
-        $qty = $_REQUEST["quantity"];
-        if($qty === ""){
-            $_SESSION["error_message"] = "Quantity cannot be empty";
-            return;
-        }
-        elseif(!is_numeric($qty)){
-            $_SESSION["error_message"] = "Quantity must be a numeric";
-            return;
-        }
-
-        $user = $_SESSION["USER"];
-
-        $this->model("TransactionModel")->AddTransaction($user["username"], (int)$qty, $id);
-        $_SESSION["success_message"] = "Succesfully added transaction";
-        header("Location:". $_SERVER["HTTP_REFERER"]);
-
-    }
-
-    function redirectBack(){
-        header("Location :" . $_SERVER["HTTP_REFERER"]);
     }
 
 

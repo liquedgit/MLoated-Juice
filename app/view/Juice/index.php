@@ -1,6 +1,7 @@
 <?php
 
 use Facade\Gate;
+use Facade\Preventor;
 
 require_once "../app/view/components/header.php";
 require_once "../app/view/components/navbar.php";
@@ -34,7 +35,7 @@ if(isset($_SESSION["error_message"])){
         <?php if(Gate::activeRoleIsAdmin($data["activeRole"])): ?>
             <div class="flex flex-col px-10 py-4 max-w-2xl">
                 <form method="POST" action="<?php echo BASEURL . "/juice/details/" . $data["product"]["id"]?>">
-                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION["csrf_token"]?>">
                     <div class="flex justify-center">
                         <div>
                             <div>
@@ -80,6 +81,7 @@ if(isset($_SESSION["error_message"])){
             <?php
                 unset($_SESSION["error_message"]);
                 unset($_SESSION["success_message"]);
+                Preventor::CSRFGenerate();
             ?>
             <div class="flex flex-col p-10 max-w-2xl">
                 <h1 class="font-semibold text-4xl"><?php echo htmlspecialchars($data["product"]["productName"])?></h1>
@@ -91,6 +93,7 @@ if(isset($_SESSION["error_message"])){
                 </div>
                 <div class="join mt-5">
                     <form action="<?php echo BASEURL . "/transaction/create/" . $data["product"]["id"] ?>" method="POST">
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION["csrf_token"]?>"/>
                         <input class="input input-bordered join-item" name="quantity" type="number" placeholder="Quantity"/>
                         <button class="btn join-item rounded-r-full">Order</button>
                     </form>

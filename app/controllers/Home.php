@@ -1,12 +1,12 @@
 <?php
 
+use Facade\Middleware;
+
 class Home extends Controller {
     protected $title = "Home";
 
     public function index(){
-        if(!isset($_SESSION["USER"])){
-            header("Location: " .BASEURL."/login");
-        }
+        Middleware::authenticatedOnly();
 
         $currUser = $_SESSION["USER"];
         $activeRole = $_SESSION["USER"]["roles"][0];

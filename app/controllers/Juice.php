@@ -1,12 +1,13 @@
 <?php
 
 use Facade\Gate;
+use Facade\Middleware;
+use Facade\Preventor;
 class Juice extends Controller
 {
     public function create(){
-        if(!isset($_SESSION["USER"])){
-            header("Location: " .BASEURL."/login");
-        }
+
+        Middleware::authenticatedOnly();
 
         $currUser = $_SESSION["USER"];
         $activeRole = $_SESSION["USER"]["roles"][0];
@@ -14,9 +15,7 @@ class Juice extends Controller
             $activeRole = $_SESSION["activeRole"];
         }
 
-        if(!Gate::activeRoleIsAdmin($activeRole)){
-            header("Location: ". BASEURL. "/home", true);
-        }
+        Middleware::adminOnly();
 
         $this->view('Juice/create', "Create Juice", [
             "currUser"=>$currUser,
@@ -26,6 +25,8 @@ class Juice extends Controller
 
     public function index(){
         if($_SERVER["REQUEST_METHOD"] === "POST"){
+            Middleware::authenticatedOnly();
+            Middleware::adminOnly();
             //TODO : CREATE JUICE
             unset($_SESSION["juice_name_error_message"]);
             unset($_SESSION["juice_price_error_message"]);
@@ -91,10 +92,8 @@ class Juice extends Controller
     }
 
     public function details($id){
+        Middleware::authenticatedOnly();
         if($_SERVER["REQUEST_METHOD"] === "GET"){
-            if(!isset($_SESSION["USER"])){
-                header("Location: " .BASEURL."/login");
-            }
 
             $currUser = $_SESSION["USER"];
             $activeRole = $_SESSION["USER"]["roles"][0];
@@ -109,48 +108,54 @@ class Juice extends Controller
                 "activeRole"=> $activeRole,
                 "product"=>$product
             ]);
-        }else if($_SERVER["REQUEST_METHOD"] === "POST"){
-//            var_dump($_REQUEST);
-//            var_dump($id);
-            unset($_SESSION["error_message"]);
-            unset($_SESSION["success_message"]);
-            $newName = $_REQUEST["productName"];
-            $newDesc = $_REQUEST["productDesc"];
-            $newPrice = $_REQUEST["productPrice"];
-            $newRating = $_REQUEST["productRating"];
-            if($newName === "" || $newDesc === "" || $newPrice === "" || $newRating === ""){
-                $_SESSION["error_message"] = "All fields must be filled";
-                $this->redirectBack();
-                return;
-            }else if(!is_numeric($newPrice)){
-                $_SESSION["error_message"] = "Price must be numeric";
-                $this->redirectBack();
-                return;
-            }else if((int)$newPrice <= 0 || (int)$newPrice >= 50000){
-                $_SESSION["juice_price_error_message"] = "Juice price cannot be less than or equals to 0 and more than or equals to 50000";
-                $this->redirectBack();
-                return;
-            }else if(strlen($newName) < 5 || strlen($newName) > 20){
-                $_SESSION["error_message"] = "Juice name cannot be less than 5 or more than 20 character";
-                $this->redirectBack();
-                return;
-            }else if(strlen($newDesc) < 10 || strlen($newDesc) > 100){
 
-                $_SESSION["error_message"] = "Juice description length cannot be less than 10 or more than 100 character";
+        }else if($_SERVER["REQUEST_METHOD"] === "POST"){
+            Middleware::adminOnly();
+
+            if(Preventor::CSRFCheck($_REQUEST["csrf_token"])){
+                unset($_SESSION["error_message"]);
+                unset($_SESSION["success_message"]);
+                $newName = $_REQUEST["productName"];
+                $newDesc = $_REQUEST["productDesc"];
+                $newPrice = $_REQUEST["productPrice"];
+                $newRating = $_REQUEST["productRating"];
+                if($newName === "" || $newDesc === "" || $newPrice === "" || $newRating === ""){
+                    $_SESSION["error_message"] = "All fields must be filled";
+                    $this->redirectBack();
+                    return;
+                }else if(!is_numeric($newPrice)){
+                    $_SESSION["error_message"] = "Price must be numeric";
+                    $this->redirectBack();
+                    return;
+                }else if((int)$newPrice <= 0 || (int)$newPrice >= 50000){
+                    $_SESSION["juice_price_error_message"] = "Juice price cannot be less than or equals to 0 and more than or equals to 50000";
+                    $this->redirectBack();
+                    return;
+                }else if(strlen($newName) < 5 || strlen($newName) > 20){
+                    $_SESSION["error_message"] = "Juice name cannot be less than 5 or more than 20 character";
+                    $this->redirectBack();
+                    return;
+                }else if(strlen($newDesc) < 10 || strlen($newDesc) > 100){
+
+                    $_SESSION["error_message"] = "Juice description length cannot be less than 10 or more than 100 character";
+                    $this->redirectBack();
+                    return;
+                }else if(!is_numeric($newRating)){
+                    $_SESSION["error_message"] = "Rating must be numeric !";
+                    $this->redirectBack();
+                    return;
+                }else if($newRating < 0 || $newRating > 5){
+                    $_SESSION["error_message"] = "Rating must be greater or equals to 0 and Less or equals to 5";
+                    $this->redirectBack();
+                    return;
+                }
+                $this->model("Product")->updateProductById($id, $newName, $newDesc, $newPrice, $newRating);
+                $_SESSION["success_message"] = "Successfully updated juice";
                 $this->redirectBack();
-                return;
-            }else if(!is_numeric($newRating)){
-                $_SESSION["error_message"] = "Rating must be numeric !";
+            }else{
+                $_SESSION["error_message"] = "Error CSRF Token";
                 $this->redirectBack();
-                return;
-            }else if($newRating < 0 || $newRating > 5){
-                $_SESSION["error_message"] = "Rating must be greater or equals to 0 and Less or equals to 5";
-                $this->redirectBack();
-                return;
             }
-            $this->model("Product")->updateProductById($id, $newName, $newDesc, $newPrice, $newRating);
-            $_SESSION["success_message"] = "Succesfully updated juice";
-            $this->redirectBack();
         }
     }
 

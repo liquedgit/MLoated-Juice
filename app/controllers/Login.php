@@ -1,4 +1,6 @@
 <?php
+use Facade\Preventor;
+use Facade\Middleware;
 
 class Login extends Controller{
 
@@ -6,20 +8,16 @@ class Login extends Controller{
     protected $userModel = "User";
 
     public function index(){
-        if(isset($_SESSION["USER"])){
-            header("Location: " .BASEURL."/home");
-        }
-
-        if(!isset($_SESSION['csrf_token'])){
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-        }
+        Middleware::guestOnly();
+        Preventor::CSRFGenerate();
         $this->view("Login/index", $this->title);
     }
 
     public function authenticate(){
+        Middleware::guestOnly();
         unset($_SESSION["error_message"]);
         if($_SERVER['REQUEST_METHOD'] === "POST"){
-            if($_REQUEST['csrf_token'] === $_SESSION["csrf_token"]) {
+            if(Preventor::CSRFCheck($_REQUEST['csrf_token'])) {
                 $user = $_REQUEST["username"];
                 $password = $_REQUEST["password"];
                 $authStatus = $this->model('User')->authenticate($user, $password);
@@ -30,9 +28,7 @@ class Login extends Controller{
                     }else{
                         setcookie(USER_SESSION, $authStatus["username"], time() + 3600, "/".PROJECT_NAME."/");
                     }
-
                     header("Location: ". BASEURL . "/home");
-//                    return;
                 }else{
                     $_SESSION["error_message"] = "Login Failed !";
                 }

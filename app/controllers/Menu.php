@@ -1,16 +1,14 @@
 <?php
 
 use Facade\Gate;
+use Facade\Middleware;
 class Menu extends Controller
 {
     protected $title = "Menu";
     public function index(){
-        if(!isset($_SESSION["USER"])){
-            header("Location: " .BASEURL."/login");
-        }
+        Middleware::authenticatedOnly();
 
         $_SESSION["lastProduct"] = 6;
-
         $currUser = $_SESSION["USER"];
         $activeRole = $_SESSION["USER"]["roles"][0];
         if(isset($_SESSION["activeRole"])) {

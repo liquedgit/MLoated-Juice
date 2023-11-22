@@ -95,9 +95,7 @@ require_once "../app/view/components/navbar.php";
                         <label for="fileUpload" class="btn">
                             Choose File
                         </label>
-                        <span id="selectedFileName" class="ml-2">
-
-                    </span>
+                        <span id="selectedFileName" class="ml-2"></span>
                         <label class="label">
                         <span class="label-text-alt text-red-500 font-normal">
                             <?php

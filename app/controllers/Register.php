@@ -1,25 +1,22 @@
 <?php
 
+
+use Facade\Middleware;
+use Facade\Preventor;
 class Register extends Controller{
 
     protected $title = "Register ";
     public function index(){
-        if(isset($_SESSION["USER"])){
-            header("Location: " .BASEURL."/home");
-        }
-        if(!isset($_SESSION['csrf_token'])){
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-        }
-        return $this->view("Register/index", $this->title);
+        Middleware::guestOnly();
+        Preventor::CSRFGenerate();
+        $this->view("Register/index", $this->title);
     }
 
     public function auth(){
+        Middleware::guestOnly();
         unset($_SESSION["error_message"]);
-
         if($_SERVER["REQUEST_METHOD"] === "POST"){
-            if($_REQUEST['csrf_token'] === $_SESSION["csrf_token"]){
-
-
+            if(Preventor::CSRFCheck($_REQUEST['csrf_token'])){
                 $username = $_REQUEST["username"];
                 $password = $_REQUEST["password"];
                 $confirmPassword = $_REQUEST["confirmPassword"];
