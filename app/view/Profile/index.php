@@ -17,8 +17,9 @@ require_once "../app/view/components/navbar.php";
                         <div class="flex items-center mb-5">
                             <label for="username" class="font-medium text-md w-40">Username</label>
                             <input
+                                    disabled
                                 value="<?php echo htmlspecialchars($data["currUser"]["username"])?>"
-                                class="input input-bordered w-64" id="username" placeholder="Username" name="username" type="text"/>
+                                class="input input-bordered w-64" id="username" placeholder="Username" type="text"/>
                         </div>
                         <div class="flex items-center mb-5">
                             <label for="dob" class="font-medium text-md w-40">Date of birth</label>

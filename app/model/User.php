@@ -28,6 +28,10 @@ class User
         $this->db->AddUsers($username,$password, $dob, $gender,$roles);
     }
 
+    public function updateProfile($username, $dob, $gender, $filePath){
+        return $this->db->UpdateProfileByUsername($username, $dob, $gender, $filePath);
+    }
+
     public function authenticate($username, $password){
         $user = $this->GetUserByUsername($username);
         if($user && password_verify($password, $user["password"])){

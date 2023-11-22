@@ -4,11 +4,6 @@
 class Database
 {
 
-    private $data = [
-        'users' => [],
-        'products' => [],
-        'transactions'=>[]
-    ];
 
     private $users = [];
     private $products = [];
@@ -180,8 +175,28 @@ class Database
                 break;
             }
         }
-        var_dump(json_encode($this->products));
+//        var_dump(json_encode($this->products));
         setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/". PROJECT_NAME ."/");
+    }
+
+    public function UpdateProfileByUsername($username, $dob, $gender, $filePath){
+        $user = null;
+        foreach ($this->users as &$user){
+            if($user["username"] === $username) {
+                $user = [
+                    "username" => $username,
+                    "password" => $user["password"],
+                    "dob" => $dob,
+                    "gender" => $gender,
+                    "roles" => $user["roles"],
+                    "profileImagePath" => ASSET_PATH_APP.  $filePath
+                ];
+                break;
+            }
+        }
+        var_dump(json_encode($this->users));
+        setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/". PROJECT_NAME ."/");
+        return $user;
     }
 
     public function GetUsers(){
