@@ -1,0 +1,31 @@
+MLoated Juice
+Simpen data di cookie, Image disimpen di server bukan blob DB. Trainee boleh pake Jquery, Tailwind, DaisyUI tapi CDN. Semua progress ditulis di progress.txt . pengerjaan juga ada penggunaan AJAX untuk infinite Scrolling pada menu.
+
+Pengerjaan menggunakan architectural pattern MVC. Trainee juga diminta untuk menggunakan best practice Password Hashing, CSRF Prevention, XSS Prevention, Disable function berbahaya php di php.ini (eval, assert, dll). Trainee juga diminta untuk membuat middleware (Logged in user ga bisa ke login page). Diminta juga untuk mengurangi resiko directory listing dari .htaccess nya.
+
+General :
+	Login user V
+	Register user V
+	Login admin V
+	Error 404 page V
+
+Home page (User) :
+	Show all juice V
+	Search juice V
+
+User page (user) :
+	Edit profile page V
+	Transaction history page V
+
+Juice detail (page):
+	- Show juice detail : Juice image, Juice name, Juice popularity V
+	- Button to order juice V
+
+Home page (admin): 
+	- Create juice V
+	- Edit juice V
+
+Transaction (admin) :
+	- Show all transaction V
+	- Search transaction based on user name V
+	
