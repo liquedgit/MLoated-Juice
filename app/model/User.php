@@ -24,12 +24,12 @@ class User
         return null;
     }
 
-    public function RegisterUser($username, $password, $dob, $gender, $roles = ["User"]){
-        $this->db->AddUsers($username,$password, $dob, $gender,$roles);
+    public function RegisterUser($username,$displayName, $password, $dob, $gender, $roles = ["User"]){
+        $this->db->AddUsers($username,$displayName,$password, $dob, $gender,$roles);
     }
 
-    public function updateProfile($username, $dob, $gender, $filePath){
-        return $this->db->UpdateProfileByUsername($username, $dob, $gender, $filePath);
+    public function updateProfile($username,$displayName, $bio , $filePath){
+        return $this->db->UpdateProfileByUsername($username, $displayName, $bio, $filePath);
     }
 
     public function authenticate($username, $password){

@@ -19,6 +19,8 @@ if(isset($_SESSION["error_message"])){
             <input class="bg-white bg-opacity-70 backdrop-blur-md w-80 backdrop-saturate-150 placeholder-gray-300 pl-2 py-2 mt-2 border border-opacity-20 border-gray-300
             focus:outline-none" name="username" type="text" placeholder="Username"/>
             <input class="bg-white bg-opacity-70 backdrop-blur-md w-80 backdrop-saturate-150 placeholder-gray-300 pl-2 py-2 border border-opacity-20 border-gray-300
+            focus:outline-none" name="displayName" type="text" placeholder="Display Name"/>
+            <input class="bg-white bg-opacity-70 backdrop-blur-md w-80 backdrop-saturate-150 placeholder-gray-300 pl-2 py-2 border border-opacity-20 border-gray-300
             focus:outline-none" type="password" name="password" placeholder="Password"/>
             <input class="bg-white bg-opacity-70 backdrop-blur-md w-80 backdrop-saturate-150 placeholder-gray-300 pl-2 py-2 border border-opacity-20 border-gray-300
             focus:outline-none" type="password" name="confirmPassword" placeholder="Confirm Password"/>

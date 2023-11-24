@@ -84,7 +84,7 @@ class Juice extends Controller
             }
 
             $newFilePath = "img/" . uniqid() . $file["name"];
-            move_uploaded_file($file["tmp_name"], "../app/asset/".$newFilePath);
+            move_uploaded_file($file["tmp_name"], "./app/asset/".$newFilePath);
             $this->model("Product")->AddNewProduct($juiceName, $juiceDesc, $juicePrice,$newFilePath);
             $_SESSION["create_success_message"] = "Successfully created " . $file["name"];
             header("Location: ". BASEURL ."/home");
@@ -160,6 +160,7 @@ class Juice extends Controller
     }
 
     function redirectBack(){
+//        var_dump($_SESSION["error_message"]);
         header("Location:". $_SERVER["HTTP_REFERER"]);
     }
 }

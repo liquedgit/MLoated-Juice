@@ -39,23 +39,26 @@ class Transaction extends Controller
             $qty = $_REQUEST["quantity"];
             if($qty === ""){
                 $_SESSION["error_message"] = "Quantity cannot be empty";
-                return;
             }
             elseif(!is_numeric($qty)){
                 $_SESSION["error_message"] = "Quantity must be a numeric";
-                return;
+            }else if((int)$qty <= 0 ){
+                $_SESSION["error_message"] = "Quantity must be bigger than 0";
+            }else{
+                $user = $_SESSION["USER"];
+
+                $this->model("TransactionModel")->AddTransaction($user["username"], (int)$qty, $id);
+                $_SESSION["success_message"] = "Successfully added transaction";
             }
-
-            $user = $_SESSION["USER"];
-
-            $this->model("TransactionModel")->AddTransaction($user["username"], (int)$qty, $id);
-            $_SESSION["success_message"] = "Succesfully added transaction";
         }else{
             $_SESSION["error_message"] = "CSRF Token error";
-            header("Location:". $_SERVER["HTTP_REFERER"]);
         }
+        header("Location:". $_SERVER["HTTP_REFERER"]);
     }
 
+    private function RedirectBack(){
+        header("Location:", $_SERVER);
+    }
 
 
 }

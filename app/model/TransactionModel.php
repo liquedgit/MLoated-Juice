@@ -1,5 +1,5 @@
 <?php
-require "../app/model/Product.php";
+require "./app/model/Product.php";
 class TransactionModel
 {
     private $db;

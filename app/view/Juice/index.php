@@ -3,11 +3,10 @@
 use Facade\Gate;
 use Facade\Preventor;
 
-require_once "../app/view/components/header.php";
-require_once "../app/view/components/navbar.php";
-?>
+require_once "./app/view/components/header.php";
+require_once "./app/view/components/navbar.php";
 
-<?php
+
 if(isset($_SESSION["error_message"])){
     echo '<div class="toast-notification" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
                 <div class="flex items-center bg-red-500 border-l-4 border-red-700 py-2 px-3 shadow-md mb-2" >
@@ -27,6 +26,8 @@ if(isset($_SESSION["error_message"])){
 }
 
 ?>
+
+
 
     <div class="flex p-10 justify-center items-center">
         <div class="h-96 w-96 rounded-lg overflow-hidden">

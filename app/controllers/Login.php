@@ -24,9 +24,9 @@ class Login extends Controller{
                 if ($authStatus) {
                     $_SESSION["USER"] = $authStatus;
                     if(isset($_REQUEST["rememberme"])){
-                        setcookie(USER_SESSION, $authStatus["username"], time() + 86400, "/". PROJECT_NAME ."/");
+                        setcookie(USER_SESSION, $authStatus["username"], time() + 86400,  "/");
                     }else{
-                        setcookie(USER_SESSION, $authStatus["username"], time() + 3600, "/".PROJECT_NAME."/");
+                        setcookie(USER_SESSION, $authStatus["username"], time() + 3600, "/");
                     }
                     header("Location: ". BASEURL . "/home");
                 }else{

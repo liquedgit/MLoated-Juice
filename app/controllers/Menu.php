@@ -52,7 +52,7 @@ class Menu extends Controller
                             </div>
                         <?php else: ?>
                             <div class="card-actions">
-                                <button onclick="window.location.href='<?php echo BASEURL .'/juice/details/'. $product["id"]?>" class="btn btn-info">Order Juice</button>
+                                <button onclick="window.location.href='<?php echo BASEURL .'/juice/details/'. $product["id"]?>'" class="btn btn-info">Order Juice</button>
                             </div>
                         <?php endif; ?>
                     </div>

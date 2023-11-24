@@ -3,7 +3,7 @@
 class Logout
 {
     public function index(){
-        setcookie(USER_SESSION, "", time() - 3600, "/".PROJECT_NAME."/");
+        setcookie(USER_SESSION, "", time() - 3600, "/");
         header("Location: ". BASEURL. "/login");
     }
 }

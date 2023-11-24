@@ -1,7 +1,6 @@
 <?php
     use Facade\Gate;
-
-?>
+1234?>
 <div class="navbar sticky top-0 z-50 px-10 bg-base-100">
     <div class="flex-1">
         <a class="btn btn-ghost text-large" href="<?php

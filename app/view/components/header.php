@@ -6,10 +6,10 @@ if(!isset($_COOKIE[USER_SESSION])){
         session_destroy();
         header("Location:" .BASEURL. "/login");
     }
+
 ?>
 <div class="w-full px-10 flex items-center justify-between" style="background-color: #2a303c">
     <div class="h-32 overflow-hidden flex items-center">
-<!--        <img class="max-h-full max-w-full object-contain" src="../app/asset/img/logo.png">-->
         <h2 class="font-semibold text-2xl">MLoated Juice</h2>
     </div>
     <div class="w-36 h-full text-end">
@@ -29,6 +29,6 @@ if(!isset($_COOKIE[USER_SESSION])){
                 })
             </script>
         <?php endif; ?>
-        <h2 class="mt-3 font-semibold">Welcome, <?php echo htmlspecialchars($data["currUser"]["username"]);?></h2>
+        <h2 class="mt-3 font-semibold">Welcome, <?php echo htmlspecialchars($data["currUser"]["displayName"]);?></h2>
     </div>
 </div>

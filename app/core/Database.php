@@ -17,6 +17,8 @@ class Database
         } else {
             $admin_data = [
                 "username"=>"admin",
+                "displayName"=>"Admin",
+                "bio"=>"Hello i am just a humble admin",
                 "password"=> password_hash("admin" , PASSWORD_BCRYPT),
                 "dob" => "2003-10-10",
                 "gender"=> "male",
@@ -25,6 +27,8 @@ class Database
             ];
             $user_data = [
                 "username" => "liqued",
+                "displayName"=>"Michael Bryan",
+                "bio"=>"Hello i am just an ordinary Michael Bryan",
                 "password"=> password_hash("testing123", PASSWORD_BCRYPT),
                 "dob" => "2003-10-10",
                 "gender"=> "male",
@@ -122,9 +126,9 @@ class Database
             $this->products[]=$product6;
             $this->products[]=$product7;
             $this->products[]=$product8;
-            setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/". PROJECT_NAME ."/");
-            setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/". PROJECT_NAME ."/");
-            setcookie("TRANSACTIONS", gzcompress(json_encode($this->transactions), 9), time() + 86400, "/". PROJECT_NAME ."/");
+            setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/");
+            setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/");
+            setcookie("TRANSACTIONS", gzcompress(json_encode($this->transactions), 9), time() + 86400, "/");
         }
     }
 
@@ -141,7 +145,7 @@ class Database
             "quantity"=> $qty
         ];
         $this->transactions[] = $newTransactions;
-        setcookie("TRANSACTIONS", gzcompress(json_encode($this->transactions), 9), time() + 86400, "/". PROJECT_NAME ."/");
+        setcookie("TRANSACTIONS", gzcompress(json_encode($this->transactions), 9), time() + 86400, "/");
     }
 
     public function GetProducts(){
@@ -160,7 +164,7 @@ class Database
             "productPrice"=> $juicePrice,
         ];
         $this->products[] = $newProduct;
-        setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/". PROJECT_NAME ."/");
+        setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/");
 
     }
 
@@ -176,26 +180,20 @@ class Database
             }
         }
 //        var_dump(json_encode($this->products));
-        setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/". PROJECT_NAME ."/");
+        setcookie("PRODUCTS", gzcompress(json_encode($this->products), 9), time() + 86400, "/");
     }
 
-    public function UpdateProfileByUsername($username, $dob, $gender, $filePath){
+    public function UpdateProfileByUsername($username, $displayName, $bio, $filePath){
         $user = null;
         foreach ($this->users as &$user){
             if($user["username"] === $username) {
-                $user = [
-                    "username" => $username,
-                    "password" => $user["password"],
-                    "dob" => $dob,
-                    "gender" => $gender,
-                    "roles" => $user["roles"],
-                    "profileImagePath" => ASSET_PATH_APP.  $filePath
-                ];
+                $user["displayName"] = $displayName;
+                $user["bio"] = $bio;
+                $user["profileImagePath"] = ASSET_PATH_APP . $filePath;
                 break;
             }
         }
-        var_dump(json_encode($this->users));
-        setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/". PROJECT_NAME ."/");
+        setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/");
         return $user;
     }
 
@@ -204,17 +202,19 @@ class Database
         return $this->users;
     }
 
-    public function AddUsers($username, $password,$dob, $gender, $roles){
+    public function AddUsers($username,$displayName, $password,$dob, $gender, $roles){
         $newUser = [
             "username"=>$username,
             "password"=> password_hash($password, PASSWORD_BCRYPT),
+            "displayName"=> $displayName,
+            "bio"=>"",
             "dob" => $dob,
             "gender"=> $gender,
-            "imagePath"=> ASSET_PATH_APP . "img/logo.png",
+            "profileImagePath"=> ASSET_PATH_APP . "img/logo.png",
             "roles"=>$roles
         ];
         $this->users[] = $newUser;
-        setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/". PROJECT_NAME ."/");
+        setcookie("USER", gzcompress(json_encode($this->users), 9), time() + 86400, "/");
     }
 
 

@@ -2,8 +2,26 @@
 
 use Facade\Gate;
 
-require_once "../app/view/components/header.php";
-require_once "../app/view/components/navbar.php";
+require_once "./app/view/components/header.php";
+require_once "./app/view/components/navbar.php";
+if(isset($_SESSION["error_message"])){
+    echo '<div class="toast-notification" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+                <div class="flex items-center bg-red-500 border-l-4 border-red-700 py-2 px-3 shadow-md mb-2" >
+                    <div class="text-white max-w-xs ">'
+        . $_SESSION["error_message"].
+        '</div>
+                </div>
+              </div>';
+}else if(isset($_SESSION["success_message"])){
+    echo '<div class="toast-notification" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+                <div class="flex items-center bg-green-500 border-l-4 border-green-700 py-2 px-3 shadow-md mb-2" >
+                    <div class="text-white max-w-xs ">'
+        . $_SESSION["success_message"].
+        '</div>
+                </div>
+              </div>';
+}
+
 ?>
 
 <!--<h1 class="text-center font-semibold text-4xl">Create New Juice</h1>-->
@@ -51,7 +69,7 @@ require_once "../app/view/components/navbar.php";
                                 echo htmlspecialchars("value='".$_SESSION["juicePrice"])."'";
                             }
                             ?>
-                               name="juicePrice" placeholder="Juice name" class="input input-bordered w-full max-w-xs" />
+                               name="juicePrice" placeholder="Juice Price" class="input input-bordered w-full max-w-xs" />
                         <label class="label">
                             <?php
                             if(isset($_SESSION["juice_price_error_message"])){
@@ -66,10 +84,10 @@ require_once "../app/view/components/navbar.php";
                     </div>
 
                     <div class="form-control mb-6">
-                        <label for="fileUpload" class="label font-bold">
+                        <label for="juiceDesc" class="label font-bold">
                             <span class="label-text">Juice description</span>
                         </label>
-                        <textarea id="fileUpload" name="juiceDescription"
+                        <textarea id="juiceDesc" name="juiceDescription"
                                   class="textarea textarea-bordered h-24" placeholder="Juice Description"><?php
                             if(isset($_SESSION["juiceDescription"]))
                                 echo htmlspecialchars($_SESSION["juiceDescription"]);

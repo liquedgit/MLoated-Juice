@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -23,8 +23,15 @@
     ?>
 </head>
 <body class="m-0 p-0">
-    <main class="min-h-screen" style="background-color: #242933">
-        <?php require_once ('../app/view/'.$view.'.php');?>
+    <main class="min-h-screen"
+        <?php
+            if($title !== "404 Not found"){
+                echo '
+                 style="background-color: #242933"';
+            }
+        ?>
+    >
+        <?php require_once ('./app/view/'.$view.'.php');?>
     </main>
 </body>
 

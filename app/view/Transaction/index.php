@@ -2,8 +2,8 @@
 
 use Facade\Gate;
 
-require_once "../app/view/components/header.php";
-require_once "../app/view/components/navbar.php";
+require_once "./app/view/components/header.php";
+require_once "./app/view/components/navbar.php";
 ?>
 
 <h1 class="text-center text-4xl font-semibold p-10">

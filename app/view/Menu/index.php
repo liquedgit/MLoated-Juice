@@ -2,8 +2,8 @@
 
 use Facade\Gate;
 
-require_once "../app/view/components/header.php";
-require_once "../app/view/components/navbar.php";
+require_once "./app/view/components/header.php";
+require_once "./app/view/components/navbar.php";
 ?>
 <div style="background-color: #242933">
     <h1 class="text-center font-semibold text-4xl py-10">Our Menu</h1>
