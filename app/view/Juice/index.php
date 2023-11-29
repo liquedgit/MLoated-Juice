@@ -41,28 +41,28 @@ if(isset($_SESSION["error_message"])){
                         <div>
                             <div>
 
-                                <label for="productName">Product Name</label>
-                                <input type="text" id="productName" placeholder="Product Name"
+                                <label for="productName">Juice Name</label>
+                                <input type="text" id="productName" placeholder="Juice Name"
                                        value="<?php echo htmlspecialchars($data["product"]["productName"])?>" name="productName"
                                        class="input input-bordered w-full max-w-lg mt-2" />
                             </div>
                             <div class="mt-5">
-                                <label for="productDesc">Product Description</label>
-                                <textarea placeholder="Product description" id="productDesc"  name="productDesc" class="textarea textarea-bordered h-48 w-full mt-2"><?php
+                                <label for="productDesc">Juice Description</label>
+                                <textarea placeholder="Juice description" id="productDesc"  name="productDesc" class="textarea textarea-bordered h-48 w-full mt-2"><?php
                                     echo htmlspecialchars($data["product"]["productDescription"])
                                     ?></textarea>
                             </div>
                         </div>
                         <div class="px-4">
                             <div>
-                                <label for="productPrice">Product Price</label>
-                                <input type="number" id="productPrice" placeholder="Product Price"
+                                <label for="productPrice">Juice Price</label>
+                                <input type="number" id="productPrice" placeholder="Juice Price"
                                        value="<?php echo htmlspecialchars($data["product"]["productPrice"])?>" name="productPrice"
                                        class="input input-bordered w-full max-w-lg mt-2" />
                             </div>
                             <div class="mt-5">
-                                <label for="productRating">Product Rating</label>
-                                <input type="number" id="productRating" placeholder="Product Price"
+                                <label for="productRating">Juice Rating</label>
+                                <input type="number" id="productRating" placeholder="Juice Rating"
                                        value="<?php echo htmlspecialchars($data["product"]["productPopularity"])?>"
                                        name="productRating"
                                        class="input input-bordered w-full max-w-lg mt-2" />
@@ -86,7 +86,8 @@ if(isset($_SESSION["error_message"])){
             ?>
             <div class="flex flex-col p-10 max-w-2xl">
                 <h1 class="font-semibold text-4xl"><?php echo htmlspecialchars($data["product"]["productName"])?></h1>
-                <span class="mt-5"><?php echo htmlspecialchars($data["product"]["productDescription"])?></span>
+                <h2 class="font-semibold text-2xl mt-1">Rp. <?php echo htmlspecialchars($data["product"]["productPrice"])?></h2>
+                <span class="mt-3"><?php echo htmlspecialchars($data["product"]["productDescription"])?></span>
                 <div class="rating rating-lg mt-5">
                     <?php for ($i = 1; $i <= 5; $i++): ?>
                         <input type="radio" name="rating-8" class="mask mask-star-2 bg-orange-400" disabled <?php echo ($i == $data["product"]["productPopularity"]) ? 'checked' : ''; ?> />

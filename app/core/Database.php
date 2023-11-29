@@ -42,7 +42,7 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."img/mango-juice.jpg",
-                "productPopularity"=> rand(0,5),
+                "productPopularity"=> rand(1,5),
                 "productPrice"=> 30000,
             ];
             $product2 = [
@@ -52,7 +52,7 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."img/strawberry-juice.png",
-                "productPopularity"=> rand(0,5),
+                "productPopularity"=> rand(1,5),
                 "productPrice"=> 25000,
             ];
             $product3 = [
@@ -62,7 +62,7 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."img/alpukat-juice.png",
-                "productPopularity"=> rand(0,5),
+                "productPopularity"=> rand(1,5),
                 "productPrice"=> 27500,
             ];
             $product4 = [
@@ -72,7 +72,7 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."img/apple-juice.jpg",
-                "productPopularity"=> rand(0,5),
+                "productPopularity"=> rand(1,5),
                 "productPrice"=> 20000,
             ];
             $product5 = [
@@ -82,7 +82,7 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."img/blueberry-juice.jpg",
-                "productPopularity"=> rand(0,5),
+                "productPopularity"=> rand(1,5),
                 "productPrice"=> 35000,
             ];
             $product6 = [
@@ -92,7 +92,7 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."img/kiwi-juice.jpeg",
-                "productPopularity"=> rand(0,5),
+                "productPopularity"=> rand(1,5),
                 "productPrice"=> 28000,
             ];
             $product7 = [
@@ -102,7 +102,7 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."img/naga-juice.jpg",
-                "productPopularity"=> rand(0,5),
+                "productPopularity"=> rand(1,5),
                 "productPrice"=> 27500,
             ];
             $product8 = [
@@ -112,7 +112,7 @@ class Database
                 "createdAt"=>time(),
                 "updatedAt"=>time(),
                 "imagePath" => ASSET_PATH_APP ."img/watermelon-juice.jpg",
-                "productPopularity"=> rand(0,5),
+                "productPopularity"=> rand(1,5),
                 "productPrice"=> 22500,
             ];
 
@@ -160,7 +160,7 @@ class Database
             "createdAt"=>time(),
             "updatedAt"=>time(),
             "imagePath" => ASSET_PATH_APP . $imagePath,
-            "productPopularity"=> 0,
+            "productPopularity"=> 1,
             "productPrice"=> $juicePrice,
         ];
         $this->products[] = $newProduct;

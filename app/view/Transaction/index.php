@@ -67,7 +67,9 @@ require_once "./app/view/components/navbar.php";
                             <?php echo "Rp. ".htmlspecialchars((int)$transaction["quantity"] * (int)$transaction["product"]["productPrice"])?>
                         </td>
                         <td class="text-center">
-                            <?php echo htmlspecialchars(gmdate('r', $transaction["createdAt"]))?>
+                            <?php $timestamp = $transaction["createdAt"];
+                            $gmt_plus_7_timestamp = $timestamp + (7 * 3600);
+                            echo htmlspecialchars(gmdate('r', $gmt_plus_7_timestamp));?>
                         </td>
                     </tr>
 

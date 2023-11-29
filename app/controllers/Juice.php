@@ -135,17 +135,17 @@ class Juice extends Controller
                     $_SESSION["error_message"] = "Juice name cannot be less than 5 or more than 20 character";
                     $this->redirectBack();
                     return;
-                }else if(strlen($newDesc) < 10 || strlen($newDesc) > 100){
+                }else if(strlen($newDesc) < 10 || strlen($newDesc) > 300){
 
-                    $_SESSION["error_message"] = "Juice description length cannot be less than 10 or more than 100 character";
+                    $_SESSION["error_message"] = "Juice description length cannot be less than 10 or more than 300 character";
                     $this->redirectBack();
                     return;
                 }else if(!is_numeric($newRating)){
                     $_SESSION["error_message"] = "Rating must be numeric !";
                     $this->redirectBack();
                     return;
-                }else if($newRating < 0 || $newRating > 5){
-                    $_SESSION["error_message"] = "Rating must be greater or equals to 0 and Less or equals to 5";
+                }else if($newRating < 1 || $newRating > 5){
+                    $_SESSION["error_message"] = "Rating must be greater or equals to 1 and Less or equals to 5";
                     $this->redirectBack();
                     return;
                 }
